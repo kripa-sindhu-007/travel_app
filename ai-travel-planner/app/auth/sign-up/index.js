@@ -1,18 +1,24 @@
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
-import React, { useEffect } from 'react'
-import {useNavigation,useRouter} from 'expo-router'
-import { Colors } from '../../../constants/Colors';
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
+import React, { useEffect } from "react";
+import { useNavigation, useRouter } from "expo-router";
+import { Colors } from "../../../constants/Colors";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default function SignUp() {
-  const navigation=useNavigation();
-  const router=useRouter();
+  const navigation = useNavigation();
+  const router = useRouter();
 
-  useEffect(()=>{
+  useEffect(() => {
     navigation.setOptions({
-      headerShown:false
-    })
-  },[])
+      headerShown: false,
+    });
+  }, []);
   return (
     <View
       style={{
@@ -29,7 +35,7 @@ export default function SignUp() {
         style={{
           fontFamily: "roboto-bold",
           fontSize: 30,
-          marginTop:30
+          marginTop: 30,
         }}
       >
         Create New Account

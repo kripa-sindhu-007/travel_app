@@ -1,18 +1,24 @@
-import { View, Text, TextInput,StyleSheet, TouchableOpacity } from 'react-native'
-import React,{useEffect} from 'react'
-import {useNavigation,useRouter} from 'expo-router';
-import {Colors} from '../../../constants/Colors'
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
+import React, { useEffect } from "react";
+import { useNavigation, useRouter } from "expo-router";
+import { Colors } from "../../../constants/Colors";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default function SignIn() {
-  const navigation=useNavigation();
+  const navigation = useNavigation();
   const router = useRouter();
 
-  useEffect(()=>{
+  useEffect(() => {
     navigation.setOptions({
-      headerShown:false
-    })
-  },[])
+      headerShown: false,
+    });
+  }, []);
 
   return (
     <View
@@ -23,7 +29,7 @@ export default function SignIn() {
         paddingTop: 40,
       }}
     >
-      <TouchableOpacity onPress={()=>router.back()}>
+      <TouchableOpacity onPress={() => router.back()}>
         <Ionicons name="arrow-back-circle-outline" size={24} color="black" />
       </TouchableOpacity>
       <Text
@@ -131,12 +137,12 @@ export default function SignIn() {
   );
 }
 
-const styles=StyleSheet.create({
-  input:{
-    padding:15,
-    borderWidth:1,
-    borderRadius:15,
-    borderColor:Colors.GRAY,
-    fontFamily:'roboto'
-  }
-})
+const styles = StyleSheet.create({
+  input: {
+    padding: 15,
+    borderWidth: 1,
+    borderRadius: 15,
+    borderColor: Colors.GRAY,
+    fontFamily: "roboto",
+  },
+});
