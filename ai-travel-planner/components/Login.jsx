@@ -9,7 +9,7 @@ export default function Login() {
   return (
     <View>
       <Image
-        source={require("./../assets/images/landing-page.webp")}
+        source={require("./../assets/images/landing image.webp")}
         style={{
           width: "100%",
           height: 520,

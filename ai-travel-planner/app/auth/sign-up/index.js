@@ -4,21 +4,50 @@ import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
+  ToastAndroid,
 } from "react-native";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigation, useRouter } from "expo-router";
 import { Colors } from "../../../constants/Colors";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../../configs/FirebaseConfig";
 
 export default function SignUp() {
   const navigation = useNavigation();
   const router = useRouter();
+
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [fullName, setFullName] = useState();
 
   useEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
   }, []);
+
+  const OnCreateAccount = () => {
+    if (!email && !password && !fullName) {
+      ToastAndroid.show("Please enter all the details", ToastAndroid.LONG);
+      return;
+    }
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed up
+        const user = userCredential.user;
+        console.log(user);
+
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+        // ..
+      });
+  };
   return (
     <View
       style={{
@@ -54,7 +83,11 @@ export default function SignUp() {
         >
           Full Name
         </Text>
-        <TextInput style={styles.input} placeholder="Enter Full Name" />
+        <TextInput
+          style={styles.input}
+          placeholder="Enter Full Name"
+          onChangeText={(value) => setFullName(value)}
+        />
       </View>
 
       <View
@@ -69,7 +102,11 @@ export default function SignUp() {
         >
           Email
         </Text>
-        <TextInput style={styles.input} placeholder="Enter Email" />
+        <TextInput
+          style={styles.input}
+          placeholder="Enter Email"
+          onChangeText={(value) => setEmail(value)}
+        />
       </View>
       {/*Password */}
       <View
@@ -88,11 +125,13 @@ export default function SignUp() {
           secureTextEntry={true}
           style={styles.input}
           placeholder="Enter Password"
+          onChangeText={(value) => setPassword(value)}
         />
       </View>
 
       {/*Create Account Button*/}
-      <View
+      <TouchableOpacity
+        onPress={OnCreateAccount}
         style={{
           padding: 20,
           backgroundColor: Colors.PRIMARY,
@@ -108,7 +147,7 @@ export default function SignUp() {
         >
           Create Account
         </Text>
-      </View>
+      </TouchableOpacity>
 
       {/*Sign In Button*/}
       <TouchableOpacity
