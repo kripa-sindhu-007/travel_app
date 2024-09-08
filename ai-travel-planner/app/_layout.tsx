@@ -9,10 +9,17 @@ export default function RootLayout() {
     'roboto-bold':require('./../assets/fonts/Roboto-Bold.ttf')
   })
   return (
-    <Stack screenOptions={{
+    <Stack screenOptions={{headerShown:false}}>
+
+
+    {/*<Stack screenOptions={{
       headerShown:false
     }}>
       <Stack.Screen name="index" />
+    </Stack>*/}
+    
+    <Stack.Screen name="(tabs)" />
+      
     </Stack>
   );
 }
